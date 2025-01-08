@@ -1,4 +1,4 @@
-###*Resumen General*
+## *Resumen General*
 
 Este programa crea una interfaz gráfica en Python que permite al usuario construir, visualizar, y trabajar con un árbol binario. Ofrece dos opciones para ingresar datos: manualmente o mediante un archivo CSV. Una vez que se ingresan los datos, el programa construye el árbol binario y lo dibuja utilizando la librería *NetworkX* y *matplotlib*.
 
