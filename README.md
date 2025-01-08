@@ -29,17 +29,18 @@ import csv
 La clase representa un nodo del árbol binario con métodos para insertar valores.
 
 #### *Constructor de la clase*
-python
+``` python
 def _init_(self, valor):
     self.valor = valor
     self.izquierdo = None
     self.derecho = None
-
+```
 - *valor*: Representa el valor almacenado en el nodo.
 - *izquierdo y derecho*: Referencias a los hijos izquierdo y derecho del nodo. Inicialmente, están vacíos (None).
 
 #### *Método insertar*
-python
+
+```python
 def insertar(self, valor):
     if valor < self.valor:
         if self.izquierdo is None:
@@ -51,6 +52,7 @@ def insertar(self, valor):
             self.derecho = ArbolBinario(valor)
         else:
             self.derecho.insertar(valor)
+```
 
 Este método asegura que el árbol mantenga su estructura binaria al insertar nuevos valores:
 - Si el nuevo valor es menor que el nodo actual, se inserta en el subárbol izquierdo.
@@ -61,7 +63,7 @@ Este método asegura que el árbol mantenga su estructura binaria al insertar nu
 ### *3. Funciones Auxiliares*
 
 #### *construir_arbol_desde_lista*
-python
+```python
 def construir_arbol_desde_lista(datos):
     if not datos:
         return None
@@ -69,11 +71,12 @@ def construir_arbol_desde_lista(datos):
     for valor in datos[1:]:
         raiz.insertar(valor)
     return raiz
+```
 
 Crea un árbol binario a partir de una lista de valores. El primer elemento se convierte en la raíz, y los demás se insertan de forma iterativa.
 
 #### *dibujar_arbol*
-python
+```python
 def dibujar_arbol(raiz):
     def agregar_aristas(nodo, grafo, posiciones, x=0, y=0, nivel=1):
         if nodo is not None:
@@ -85,6 +88,7 @@ def dibujar_arbol(raiz):
             if nodo.derecho is not None:
                 grafo.add_edge(nodo.valor, nodo.derecho.valor)
                 agregar_aristas(nodo.derecho, grafo, posiciones, x + 1 / nivel, y - 1, nivel + 1)
+```
 
 Dibuja el árbol binario:
 - Se utiliza *NetworkX* para construir un grafo donde los nodos son los valores del árbol.
@@ -92,7 +96,7 @@ Dibuja el árbol binario:
 - Usa matplotlib para mostrar el gráfico.
 
 #### *cargar_desde_csv*
-python
+```python
 def cargar_desde_csv():
     ruta_archivo = filedialog.askopenfilename(filetypes=[("Archivos CSV", "*.csv")])
     if not ruta_archivo:
@@ -105,13 +109,14 @@ def cargar_desde_csv():
     except Exception as e:
         messagebox.showerror("Error", f"No se pudo cargar el archivo CSV: {e}")
         return None
+```
 
 Carga datos desde un archivo CSV:
 - El archivo debe contener una lista de números, uno por fila.
 - Si ocurre un error, muestra un mensaje con *messagebox*.
 
 #### *entrada_manual*
-python
+```python
 def entrada_manual():
     datos_entrada = simpledialog.askstring("Entrada", "Introduce números separados por comas:")
     try:
@@ -119,11 +124,12 @@ def entrada_manual():
     except Exception as e:
         messagebox.showerror("Error", f"Entrada no válida: {e}")
         return None
+```
 
 Permite al usuario ingresar valores manualmente mediante una cadena separada por comas.
 
 #### *crear_arbol*
-python
+```python
 def crear_arbol():
     opcion = tk.messagebox.askquestion("Método de Entrada", "¿Quieres cargar datos desde un archivo CSV?")
     if opcion == "yes":
@@ -133,6 +139,7 @@ def crear_arbol():
     if datos:
         arbol = construir_arbol_desde_lista(datos)
         dibujar_arbol(arbol)
+```
 
 Controla la creación del árbol:
 1. Pregunta al usuario si desea cargar datos desde un archivo CSV o ingresarlos manualmente.
@@ -143,16 +150,17 @@ Controla la creación del árbol:
 ### *4. Interfaz Gráfica*
 
 #### *Configuración General*
-python
+```python
 raiz = tk.Tk()
 raiz.title("Árbol Binario")
 raiz.iconbitmap("Arbolito.ico")
+```
 
 - Configura la ventana principal de la aplicación.
 - Cambia el ícono de la aplicación (archivo Arbolito.ico).
 
 #### *Elementos de la Interfaz*
-python
+```python
 marco = tk.Frame(raiz, padx=20, pady=20)
 marco.pack()
 
@@ -164,6 +172,7 @@ boton.pack(pady=10)
 
 boton_salir = tk.Button(marco, text="Salir", command=raiz.quit, bg="salmon", font=("Sans", 80))
 boton_salir.pack(pady=10)
+```
 
 - *marco*: Contenedor principal de los elementos.
 - *etiqueta*: Muestra un título en la ventana.
@@ -171,9 +180,9 @@ boton_salir.pack(pady=10)
 - *boton_salir*: Cierra la aplicación.
 
 #### *Inicio del Bucle Principal*
-python
+```python
 raiz.mainloop()
-
+```
 Inicia el bucle principal de la interfaz gráfica, permitiendo que la ventana se mantenga abierta.
 
 ---
@@ -182,8 +191,9 @@ Inicia el bucle principal de la interfaz gráfica, permitiendo que la ventana se
 1. *Error en el Constructor de la Clase*:
    - El constructor utiliza _init_ en lugar de __init__.
    - Debería ser:
-     python
+     ```python
      def __init__(self, valor):
+     ```
      
 
 2. *Control de Tipos en Entrada Manual*:
