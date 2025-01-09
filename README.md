@@ -7,13 +7,14 @@ Este programa crea una interfaz gráfica en Python que permite al usuario constr
 ## *Detalles del Código*
 
 ### *1. Importación de Librerías*
-python
+```python
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 import networkx as nx
 import matplotlib.pyplot as plt
 from io import StringIO
 import csv
+```
 
 - *tkinter*: Proporciona herramientas para crear interfaces gráficas.
 - *filedialog*: Permite al usuario seleccionar archivos (usado para cargar CSV).
